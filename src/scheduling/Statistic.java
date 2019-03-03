@@ -32,27 +32,42 @@ public class Statistic {
         this.throughPut = (double) size / (double) totalTime;
     }
 
-    public double calculateAverageWaitingTime() {
+    public int calculateWaitingTime() {
         int total = 0;
         for (int i = 0; i < this.waitingTime.length; i++) {
             total += this.waitingTime[i];
         }
+        return total;
+    }
+
+    public double calculateAverageWaitingTime() {
+        int total = this.calculateWaitingTime();
         return (double) total / this.waitingTime.length;
     }
 
-    public double calculateAverageTurnAroundTime() {
+    public int calculateTurnAroundTime() {
         int total = 0;
         for (int i = 0; i < this.turnAroundTime.length; i++) {
             total += this.turnAroundTime[i];
         }
+        return total;
+    }
+
+    public double calculateAverageTurnAroundTime() {
+        int total = this.calculateTurnAroundTime();
         return (double) total / this.turnAroundTime.length;
     }
 
-    public double calculateAverageResponseTime() {
+    public int calculateResponseTime() {
         int total = 0;
         for (int i = 0; i < this.responseTime.length; i++) {
             total += this.responseTime[i];
         }
+        return total;
+    }
+
+    public double calculateAverageResponseTime() {
+        int total = this.calculateResponseTime();
         return (double) total / this.responseTime.length;
     }
 
@@ -61,9 +76,9 @@ public class Statistic {
 
         return "performance: 100%\n"
                 + "Through put: " + String.valueOf(this.throughPut) + "\n"
-                + "Turn Around Time: " + Arrays.toString(this.turnAroundTime) + " ~" + this.calculateAverageTurnAroundTime() + "\n"
-                + "Waiting Time: " + Arrays.toString(this.waitingTime) + " ~" + this.calculateAverageWaitingTime() + "\n"
-                + "Response Time: " + Arrays.toString(this.responseTime) + " ~" + this.calculateAverageResponseTime();
+                + "Turn Around Time: " + Arrays.toString(this.turnAroundTime) + ":" + this.calculateTurnAroundTime() + " ~" + this.calculateAverageTurnAroundTime() + "\n"
+                + "Waiting Time: " + Arrays.toString(this.waitingTime) + ":" + this.calculateWaitingTime() + " ~" + this.calculateAverageWaitingTime() + "\n"
+                + "Response Time: " + Arrays.toString(this.responseTime) + ":" + this.calculateResponseTime() + " ~" + this.calculateAverageResponseTime();
     }
 
 }

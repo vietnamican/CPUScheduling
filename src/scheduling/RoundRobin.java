@@ -42,7 +42,7 @@ public class RoundRobin implements Algorithm {
             if (time1 <= currentTime && time2 > currentTime) {
                 return -1;
             }
-            return -1;
+            return 0;
         }
     }
 
@@ -52,13 +52,29 @@ public class RoundRobin implements Algorithm {
             this.amountProcess = processes.size();
             return processes;
         }
-        
+//        String string = "";
+//        for (int i = 0; i < processes.size(); i++) {
+//            string += processes.get(i).getStartTime() + " ";
+//        }
+//        System.out.println(currentTime + " " + string);
         //when kill process, not to re-sort queue
         if (this.amountProcess == processes.size()) {
             Process executedProcess = processes.remove(0);
             processes.add(executedProcess);
         }
-
+//        string = "";
+//        for (int i = 0; i < processes.size(); i++) {
+//            string += processes.get(i).getStartTime() + " ";
+//        }
+//        System.out.println(currentTime + " " + string);
+        
+        Collections.sort(processes, new Sorter(currentTime));
+        
+//        string = "";
+//        for (int i = 0; i < processes.size(); i++) {
+//            string += processes.get(i).getStartTime() + " ";
+//        }
+//        System.out.println(currentTime + " " + string);
         this.amountProcess = processes.size();
         return processes;
     }

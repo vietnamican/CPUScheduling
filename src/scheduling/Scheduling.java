@@ -69,11 +69,20 @@ public class Scheduling {
         /*
         You are here
          */
-        Process p0 = new Process(68, 0);
-        Process p1 = new Process(19, 7);
-        Process p2 = new Process(31, 12);
-        Process p3 = new Process(42, 15);
+//        Process p0 = new Process(24, 0);
+//        Process p1 = new Process(40, 20);
+//        Process p2 = new Process(10, 30);
+//        Process p3 = new Process(15, 50);
+        Process p0 = new Process(7, 0);
+        Process p1 = new Process(4, 2);
+        Process p2 = new Process(1, 4);
+        Process p3 = new Process(5, 5);
+        
+//        Process p0 = new Process(21);
+//        Process p1 = new Process(10);
+//        Process p2 = new Process(6);
         Process[] rawProcesses = new Process[]{p0, p1, p2, p3};
+//        Process[] rawProcesses = new Process[]{p0, p1, p2};
         Process[] processes;
 
         processes = Scheduling.cloneProcess(rawProcesses);

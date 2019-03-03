@@ -26,6 +26,7 @@ public class Process {
     }
 
     public Process(int amount) {
+        this.id = UUID.randomUUID();
         this.startTime = 0;
         this.amount = amount;
         this.isStarted = false;

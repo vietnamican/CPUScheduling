@@ -38,7 +38,17 @@ public class ShortestRemainingFirst implements Algorithm {
 
     @Override
     public ArrayList<Process> sort(ArrayList<Process> processes, int currentTime) {
+//        String string = "";
+//        for (int i = 0; i < processes.size(); i++) {
+//            string += processes.get(i).getStartTime() + " ";
+//        }
+//        System.out.println(currentTime + " " + string);
         Collections.sort(processes, new Sorter(currentTime));
+//        string = "";
+//        for (int i = 0; i < processes.size(); i++) {
+//            string += processes.get(i).getStartTime() + " ";
+//        }
+//        System.out.println(currentTime + " " + string);
         return processes;
     }
 
@@ -52,13 +62,17 @@ public class ShortestRemainingFirst implements Algorithm {
             defaultInterrupt[i] = processes.get(i).getStartTime();
         }
         Arrays.sort(defaultInterrupt);
+        int interruptTime = Integer.MAX_VALUE;
         for (int i = 0; i < size; i++) {
             int temp = defaultInterrupt[i];
             if (currentTime < temp) {
-                return temp;
+                interruptTime = temp;
+                break;
             }
         }
-        return currentTime + processes.get(0).getAmount();
+        int processTime = currentTime + processes.get(0).getAmount();
+        return interruptTime < processTime ? interruptTime : processTime;
+//        return currentTime + processes.get(0).getAmount();
     }
 
 }
