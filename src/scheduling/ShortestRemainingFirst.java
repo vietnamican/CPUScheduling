@@ -37,7 +37,7 @@ public class ShortestRemainingFirst implements Algorithm {
     }
 
     @Override
-    public ArrayList<Process> sort(ArrayList<Process> processes, int currentTime) {
+    public ArrayList<Process> sort(ArrayList<Process> processes, Process currentProcess, int currentTime) {
 //        String string = "";
 //        for (int i = 0; i < processes.size(); i++) {
 //            string += processes.get(i).getStartTime() + " ";
@@ -53,7 +53,7 @@ public class ShortestRemainingFirst implements Algorithm {
     }
 
     @Override
-    public int interrupt(ArrayList<Process> processes, int currentTime) {
+    public int interrupt(ArrayList<Process> processes, Process currentProcess, int currentTime) {
 
         //get interrupt in startTime
         int size = processes.size();
@@ -70,7 +70,7 @@ public class ShortestRemainingFirst implements Algorithm {
                 break;
             }
         }
-        int processTime = currentTime + processes.get(0).getAmount();
+        int processTime = currentTime + currentProcess.getAmount();
         return interruptTime < processTime ? interruptTime : processTime;
 //        return currentTime + processes.get(0).getAmount();
     }

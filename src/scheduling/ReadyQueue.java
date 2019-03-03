@@ -46,18 +46,19 @@ public class ReadyQueue {
 
     public void startProcess(int time) {
         this.currentProcess = this.processes.get(0);
+        this.processes.remove(this.currentProcess);
         this.currentProcess.start(time);
     }
 
     public void pauseProcess(int time) {
         this.currentProcess.pause(time);
-        if (this.currentProcess.getAmount() == 0) {
-            this.removeProcess();
+        if (this.currentProcess.getAmount() > 0) {
+            this.processes.add(this.currentProcess);
         }
     }
 
     public void sortQueue(Algorithm sortAlgorithm, int time) {
-        this.processes = sortAlgorithm.sort(this.processes, time);
+        this.processes = sortAlgorithm.sort(this.processes, this.currentProcess, time);
         this.currentProcess = this.processes.get(0);
     }
 

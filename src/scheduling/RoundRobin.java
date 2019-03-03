@@ -34,7 +34,7 @@ public class RoundRobin implements Algorithm {
             int time2 = p2.getStartTime();
 //            if(amount1 == 0 && amount2 ==0)
             if (time1 > currentTime && time2 > currentTime) {
-                return -1;
+                return 0;
             }
             if (time1 > currentTime && time2 <= currentTime) {
                 return 1;
@@ -47,21 +47,21 @@ public class RoundRobin implements Algorithm {
     }
 
     @Override
-    public ArrayList<Process> sort(ArrayList<Process> processes, int currentTime) {
+    public ArrayList<Process> sort(ArrayList<Process> processes, Process currentProcess, int currentTime) {
         if (currentTime == 0) {
             this.amountProcess = processes.size();
             return processes;
         }
-//        String string = "";
-//        for (int i = 0; i < processes.size(); i++) {
-//            string += processes.get(i).getStartTime() + " ";
-//        }
-//        System.out.println(currentTime + " " + string);
-        //when kill process, not to re-sort queue
-        if (this.amountProcess == processes.size()) {
-            Process executedProcess = processes.remove(0);
-            processes.add(executedProcess);
+        String string = "";
+        for (int i = 0; i < processes.size(); i++) {
+            string += processes.get(i).getStartTime() + " ";
         }
+        System.out.println(currentTime + " " + string);
+        //when kill process, not to re-sort queue
+//        if (this.amountProcess == processes.size()) {
+//            Process executedProcess = processes.remove(0);
+//            processes.add(executedProcess);
+//        }
 //        string = "";
 //        for (int i = 0; i < processes.size(); i++) {
 //            string += processes.get(i).getStartTime() + " ";
@@ -70,18 +70,18 @@ public class RoundRobin implements Algorithm {
         
         Collections.sort(processes, new Sorter(currentTime));
         
-//        string = "";
-//        for (int i = 0; i < processes.size(); i++) {
-//            string += processes.get(i).getStartTime() + " ";
-//        }
-//        System.out.println(currentTime + " " + string);
+        string = "";
+        for (int i = 0; i < processes.size(); i++) {
+            string += processes.get(i).getStartTime() + " ";
+        }
+        System.out.println(currentTime + " " + string);
         this.amountProcess = processes.size();
         return processes;
     }
 
     @Override
-    public int interrupt(ArrayList<Process> processes, int currentTime) {
-        Process currentProcess = processes.get(0);
+    public int interrupt(ArrayList<Process> processes, Process currentProcess, int currentTime) {
+//        Process currentProcess = processes.get(0);
         if (currentProcess.getAmount() < this.q) {
             return currentTime + currentProcess.getAmount();
         }

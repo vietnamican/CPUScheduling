@@ -13,6 +13,8 @@ import java.util.Comparator;
  * @author vietn
  */
 public interface Algorithm {
-    ArrayList<Process> sort(ArrayList<Process> processes, int currentTime);
-    int interrupt(ArrayList<Process> processes, int currentTime);
+
+    ArrayList<Process> sort(ArrayList<Process> processes, Process currentProcess, int currentTime);
+
+    int interrupt(ArrayList<Process> processes, Process currentProcess, int currentTime);
 }

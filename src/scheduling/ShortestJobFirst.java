@@ -36,14 +36,14 @@ public class ShortestJobFirst implements Algorithm {
     }
 
     @Override
-    public ArrayList<Process> sort(ArrayList<Process> processes, int currentTime) {
+    public ArrayList<Process> sort(ArrayList<Process> processes, Process currentProcess, int currentTime) {
         Collections.sort(processes, new Sorter(currentTime));
         return processes;
     }
 
     @Override
-    public int interrupt(ArrayList<Process> processes, int currentTime) {
-        Process currentProcess = processes.get(0);
+    public int interrupt(ArrayList<Process> processes, Process currentProcess, int currentTime) {
+//        Process currentProcess = processes.get(0);
         return currentTime + currentProcess.getAmount();
     }
 
