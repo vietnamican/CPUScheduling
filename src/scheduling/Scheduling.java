@@ -10,39 +10,40 @@ public class Scheduling {
         return "----------------------------------------------------------------";
     }
 
-    public static void firstComeFirstServe(Process[] processes, int latency) {
+    public static void firstComeFirstServe(Process[] processes) {
         System.out.println(Scheduling.separator());
         System.out.println("First come first serve: \n");
         Algorithm algorithm = new FirstComeFirstServe();
-        Scheduling.run(processes, algorithm, latency);
+        Scheduling.run(processes, algorithm);
         System.out.println(Scheduling.separator());
     }
 
-    public static void shortestJobFirst(Process[] process, int latency) {
+    public static void shortestJobFirst(Process[] process) {
         System.out.println(Scheduling.separator());
         System.out.println("Shortest job first");
         Algorithm algorithm = new ShortestJobFirst();
-        Scheduling.run(process, algorithm, latency);
+        Scheduling.run(process, algorithm);
         System.out.println(Scheduling.separator());
     }
 
-    public static void shortestRemainingFirst(Process[] process, int latency) {
+    public static void shortestRemainingFirst(Process[] process) {
         System.out.println(Scheduling.separator());
         System.out.println("Shortest remaining first");
         Algorithm algorithm = new ShortestRemainingFirst();
-        Scheduling.run(process, algorithm, latency);
+        Scheduling.run(process, algorithm);
         System.out.println(Scheduling.separator());
     }
 
-    public static void roundRobin(Process[] processes, int latency, int q) {
+    public static void roundRobin(Process[] processes, int q) {
         System.out.println(Scheduling.separator());
         System.out.println("Round Robin with q = " + q);
         Algorithm algorithm = new RoundRobin(q);
-        Scheduling.run(processes, algorithm, latency);
+        Scheduling.run(processes, algorithm);
         System.out.println(Scheduling.separator());
     }
 
-    public static void run(Process[] processes, Algorithm algorithm, int latency) {
+    public static void run(Process[] processes, Algorithm algorithm) {
+        int latency = Scheduling.getLatency(processes);
         CPUManagement cpuManagement = new CPUManagement(processes, algorithm, latency);
 
         //main interite
@@ -75,20 +76,20 @@ public class Scheduling {
         return latency;
     }
 
-    public static void letdoit(Process[] rawProcesses, int latency) {
+    public static void letdoit(Process[] rawProcesses) {
         Process[] processes;
 
         processes = Scheduling.cloneProcess(rawProcesses);
-        Scheduling.firstComeFirstServe(processes, latency);
+        Scheduling.firstComeFirstServe(processes);
 
         processes = Scheduling.cloneProcess(rawProcesses);
-        Scheduling.shortestJobFirst(processes, latency);
+        Scheduling.shortestJobFirst(processes);
 
         processes = Scheduling.cloneProcess(rawProcesses);
-        Scheduling.shortestRemainingFirst(processes, latency);
+        Scheduling.shortestRemainingFirst(processes);
 
         processes = Scheduling.cloneProcess(rawProcesses);
-        Scheduling.roundRobin(processes, latency, 15);
+        Scheduling.roundRobin(processes, 15);
     }
 
     public static void main(String[] args) {
@@ -110,8 +111,7 @@ public class Scheduling {
 //        Process p3 = new Process(25, 40);
         Process[] rawProcesses = new Process[]{p0, p1, p2};
 //        Process[] rawProcesses = new Process[]{p0, p1, p2, p3};
-        int latency = Scheduling.getLatency(rawProcesses);
-        Scheduling.letdoit(rawProcesses, latency);
+        Scheduling.letdoit(rawProcesses);
 
     }
 }
