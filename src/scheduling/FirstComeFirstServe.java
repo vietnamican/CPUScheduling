@@ -30,7 +30,7 @@ public class FirstComeFirstServe implements Algorithm {
             if (time1 <= currentTime && time2 > currentTime) {
                 return -1;
             }
-            return 0;
+            return time1-time2;
         }
     }
 

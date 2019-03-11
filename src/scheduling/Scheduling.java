@@ -89,7 +89,7 @@ public class Scheduling {
         Scheduling.shortestRemainingFirst(processes);
 
         processes = Scheduling.cloneProcess(rawProcesses);
-        Scheduling.roundRobin(processes, 15);
+        Scheduling.roundRobin(processes, 3);
     }
 
     public static void main(String[] args) {
@@ -101,16 +101,16 @@ public class Scheduling {
 //        Process p1 = new Process(20, 7);
 //        Process p2 = new Process(14, 21);
 
-        Process p0 = new Process(37, 3);
-        Process p1 = new Process(20, 10);
-        Process p2 = new Process(14, 24);
+//        Process p0 = new Process(37, 3);
+//        Process p1 = new Process(20, 10);
+//        Process p2 = new Process(14, 24);
         
-//        Process p0 = new Process(21, 0);
-//        Process p1 = new Process(10, 30);
-//        Process p2 = new Process(40, 20);
-//        Process p3 = new Process(25, 40);
-        Process[] rawProcesses = new Process[]{p0, p1, p2};
-//        Process[] rawProcesses = new Process[]{p0, p1, p2, p3};
+        Process p0 = new Process(11);
+        Process p1 = new Process(7);
+        Process p2 = new Process(9);
+        Process p3 = new Process(6);
+//        Process[] rawProcesses = new Process[]{p0, p1, p2};
+        Process[] rawProcesses = new Process[]{p0, p1, p2, p3};
         Scheduling.letdoit(rawProcesses);
 
     }

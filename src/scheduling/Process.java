@@ -40,14 +40,19 @@ public class Process {
         this.isStarted = process.isStarted;
         this.session = new ArrayList<>(process.session);
     }
+
     @Override
     public String toString() {
         String string = "";
         for (int i = 0; i < this.session.size(); i++) {
-            int[] currentSession = this.session.get(i);
-            string += "[" + String.valueOf(currentSession[0]) + ", " + String.valueOf(currentSession[1]) + "], ";
+            string += this.toStringASession(i);
         }
         return string;
+    }
+
+    public String toStringASession(int index) {
+        int[] currentSession = this.session.get(index);
+        return "[" + String.valueOf(currentSession[0]) + ", " + String.valueOf(currentSession[1]) + "], ";
     }
 
     public void start(int time) {
